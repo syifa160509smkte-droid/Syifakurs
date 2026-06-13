@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PerpusSiswa</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+body{
+    background:#f5e6d3;
+    font-family:Arial;
+}
+
+.hero{
+    background:url("https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1200");
+    background-size:cover;
+    background-position:center;
+    height:300px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    text-shadow:2px 2px 5px black;
+}
+
+.search-box input{
+    width:300px;
+    padding:12px;
+    border-radius:25px;
+    border:none;
+    outline:none;
+    margin-top:10px;
+}
+
+.genre{
+    text-align:center;
+    margin:20px;
+}
+
+.genre button{
+    margin:5px;
+    padding:10px 15px;
+    border-radius:20px;
+    color:white;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.bookshelf{
+    background:#7a4a25;
+    margin:20px;
+    padding:20px;
+    border-radius:20px;
+}
+
+.shelf{
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    justify-content:center;
+    align-items:flex-start;
+    padding:20px;
+    border-bottom:12px solid #3b2412;
+}
+
+.cart{
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:white;
+    padding:12px;
+    border-radius:12px;
+    width:230px;
+    z-index:999;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+#toast{
+    position:fixed;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#222;
+    color:white;
+    padding:10px 18px;
+    border-radius:20px;
+    opacity:0;
+    transition:.3s;
+    z-index:9999;
+}
+</style>
+</head>
+
+<body>
+
+<div id="toast"></div>
+
+<div class="cart" id="cartCount" onclick="toggleCart()">
+🛒 Keranjang (0)
+</div>
+
+<div id="cartList"
+style="display:none;position:fixed;top:70px;right:15px;width:250px;background:white;padding:15px;border-radius:12px;max-height:300px;overflow:auto;">
+Belum ada buku dipinjam
+</div>
+
+<div class="hero">
+    <h1>📚 Perpustakaan Siswa</h1>
+
+    <div class="search-box">
+        <input type="text" id="searchInput"
+        placeholder="Cari ID / judul / penulis / penerbit / genre / harga">
+    </div>
+</div>
+
+<div class="genre">
+    <button style="background:#2d6a4f" onclick="filterGenre('Semua')">Semua</button>
+    <button style="background:#3498db" onclick="filterGenre('Pelajaran')">Pelajaran</button>
+    <button style="background:#e91e63" onclick="filterGenre('Novel')">Novel</button>
+    <button style="background:#ff9800" onclick="filterGenre('Komik')">Komik</button>
+    <button style="background:#ffc1cc" onclick="filterGenre('Self Improvement')">Self Improvement</button>
+    <button style="background:#c5cae9" onclick="filterGenre('Buku Anak')">Buku Anak</button>
+</div>
+
+<div class="bookshelf">
+    <h2 style="color:white;text-align:center;font-size:24px;">
+        📖 Rak Buku Digital
+    </h2>
+
+    <div id="bookContainer" class="shelf"></div>
+</div>
+
+<script src="Buku-data.js"></script>
+<script src="Script.js"></script>
+
+</body>
+</html>
